@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/screens/result.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
+  static const routeName = '/input-page';
   @override
   _InputPageState createState() => _InputPageState();
 }
@@ -71,6 +73,7 @@ class _InputPageState extends State<InputPage> {
                                 color: selectedGender == Gender.male
                                     ? Colors.white
                                     : Color(0xFF8E8E9B),
+                                fontSize: 25,
                               ),
                         ),
                       ],
@@ -109,6 +112,7 @@ class _InputPageState extends State<InputPage> {
                                 color: selectedGender == Gender.female
                                     ? Colors.white
                                     : Color(0xFF8E8E9B),
+                                fontSize: 25,
                               ),
                         )
                       ],
@@ -210,8 +214,11 @@ class _InputPageState extends State<InputPage> {
                         children: <Widget>[
                           IconButton(
                               // color: Color(0xFF1C2033),
-                              iconSize: mediaq.size.width / 8,
-                              icon: Icon(FontAwesomeIcons.minusCircle),
+                              iconSize: mediaq.size.width / 9,
+                              icon: Icon(
+                                FontAwesomeIcons.minusCircle,
+                                color: Color(0xFF1D1F33),
+                              ),
                               onPressed: () {
                                 setState(() {
                                   weight--;
@@ -220,8 +227,11 @@ class _InputPageState extends State<InputPage> {
                               }),
                           IconButton(
                               // color: Color(0xFF1C2033),
-                              iconSize: mediaq.size.width / 8,
-                              icon: Icon(FontAwesomeIcons.plusCircle),
+                              iconSize: mediaq.size.width / 9,
+                              icon: Icon(
+                                FontAwesomeIcons.plusCircle,
+                                color: Color(0xFF1D1F33),
+                              ),
                               onPressed: () {
                                 setState(() {
                                   weight++;
@@ -258,8 +268,11 @@ class _InputPageState extends State<InputPage> {
                         children: <Widget>[
                           IconButton(
                               // color: Color(0xFF1C2033),
-                              iconSize: mediaq.size.width / 8,
-                              icon: Icon(FontAwesomeIcons.minusCircle),
+                              iconSize: mediaq.size.width / 9,
+                              icon: Icon(
+                                FontAwesomeIcons.minusCircle,
+                                color: Color(0xFF1D1F33),
+                              ),
                               onPressed: () {
                                 setState(() {
                                   age--;
@@ -268,9 +281,10 @@ class _InputPageState extends State<InputPage> {
                               }),
                           IconButton(
                               // color: Color(0xFF353949),
-                              iconSize: mediaq.size.width / 8,
+                              iconSize: mediaq.size.width / 9,
                               icon: Icon(
                                 FontAwesomeIcons.plusCircle,
+                                color: Color(0xFF1D1F33),
                               ),
                               onPressed: () {
                                 setState(() {
@@ -297,14 +311,19 @@ class _InputPageState extends State<InputPage> {
             // borderRadius: BorderRadius.circular(20),
             color: Color(0xFFEA1556),
           ),
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              'CALCULATE YOUR BMI',
-              style: Theme.of(context).textTheme.body2.copyWith(
-                    fontSize: 20,
-                  ),
+          child: FlatButton(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                'CALCULATE YOUR BMI',
+                style: Theme.of(context).textTheme.body2.copyWith(
+                      fontSize: 20,
+                    ),
+              ),
             ),
+            onPressed: () {
+              Navigator.of(context).pushNamed(ResultScreen.routeName);
+            },
           ),
         ),
       ),
