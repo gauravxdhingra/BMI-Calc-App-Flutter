@@ -2,6 +2,7 @@ import 'package:bmi_calculator/screens/result.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../util/calc.dart';
 
 enum Gender { male, female }
 
@@ -322,7 +323,18 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             onPressed: () {
-              Navigator.of(context).pushNamed(ResultScreen.routeName);
+              Calc calc = Calc(
+                height,
+                weight,
+              );
+              calc.calcBMI();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultScreen(
+                          bMIRes: calc.calcBMI(),
+                          remark: calc.remarks(),
+                          remarkDetails: calc.remarkDetails())));
             },
           ),
         ),

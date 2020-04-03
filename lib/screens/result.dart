@@ -2,7 +2,16 @@ import 'package:bmi_calculator/screens/input_page.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreen extends StatelessWidget {
+  final String bMIRes;
+  final String remark;
+  final String remarkDetails;
+
   static const routeName = '/result';
+
+  const ResultScreen(
+      {@required this.bMIRes,
+      @required this.remark,
+      @required this.remarkDetails});
   @override
   Widget build(BuildContext context) {
     final mediaq = MediaQuery.of(context);
@@ -28,10 +37,11 @@ class ResultScreen extends StatelessWidget {
           children: <Widget>[
             Text(
               'Your Result',
+              // textAlign: TextAlign.left,
               // style: TextStyle(),
             ),
             SizedBox(
-              height: mediaq.size.width / 15,
+              height: mediaq.size.width / 7,
             ),
             Expanded(
               child: Container(
@@ -45,36 +55,42 @@ class ResultScreen extends StatelessWidget {
                   // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Text(
-                      'remark',
+                      '$remark',
                       style: Theme.of(context).textTheme.display1.copyWith(
                             color: Color(0xFFEA1556),
                           ),
                     ),
                     Text(
-                      'score 22',
+                      '$bMIRes',
                       style: TextStyle(fontSize: 70),
                     ),
-                    Text(
-                      'Normal BMI Range:',
-                      style: Theme.of(context).textTheme.display1.copyWith(
-                            color: Color(0xFFEA1556),
-                          ),
+                    Column(
+                      children: <Widget>[
+                        Text(
+                          'Normal BMI Range:',
+                          style: Theme.of(context).textTheme.display1.copyWith(
+                                color: Color(0xFFEA1556),
+                              ),
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        Text(
+                          '18.5 - 25 kg/m²',
+                          style: Theme.of(context).textTheme.display1,
+                        ),
+                      ],
                     ),
-                    Text(
-                      '18.5 - 25 kg/m²',
-                      style: Theme.of(context).textTheme.display1,
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        '$remarkDetails',
+                        style: Theme.of(context).textTheme.display1.copyWith(
+                              fontSize: 25,
+                            ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    Text(
-                      'remarkdetails',
-                      style: Theme.of(context).textTheme.display1.copyWith(
-                            fontSize: 25,
-                          ),
-                    ),
-                    FlatButton(
-                      color: Color(0xFF101427),
-                      onPressed: null,
-                      child: Text('SAVE RESULT'),
-                    )
                   ],
                 ),
               ),
